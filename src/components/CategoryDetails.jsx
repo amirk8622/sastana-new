@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './CategoryDetails.css';
+import CategoryList from './CategoryList'; // Import your sidebar component
 
 const CategoryDetails = ({ categories }) => {
     const { name } = useParams();
@@ -9,6 +10,8 @@ const CategoryDetails = ({ categories }) => {
     const [isTransactionDropdownOpen, setTransactionDropdownOpen] = useState(false);
     const [isWalletDropdownOpen, setWalletDropdownOpen] = useState(false);
     const [unlockTime, setUnlockTime] = useState('');
+    const [isSidebarVisible, setIsSidebarVisible] = useState(false);
+
 
     // Assuming the unlock date is a future date. You can modify this to be dynamic or retrieved from your data.
     const unlockDate = new Date(Date.now() + 309 * 24 * 60 * 60 * 1000); // Example: 309 days from now
@@ -33,10 +36,14 @@ const CategoryDetails = ({ categories }) => {
     useEffect(() => {
         const interval = setInterval(() => {
             setUnlockTime(calculateRemainingTime());
-        }, 1000); // Update every second
+        }, 1000);
 
         return () => clearInterval(interval);
     }, []);
+
+    const toggleSidebar = () => {
+        setIsSidebarVisible(!isSidebarVisible);
+    };
 
     if (!category) {
         return <div>Category not found.</div>;
@@ -45,8 +52,27 @@ const CategoryDetails = ({ categories }) => {
     return (
         <div className="category-details">
             <div className="category-header">
+            <button onClick={toggleSidebar} className="toggle-button">
+                <i className="fas fa-bars"></i>
+            </button>
                 <span style={{ color: 'black' }}>{category.name}</span>
             </div>
+
+            {isSidebarVisible && (
+            <div className="category-overlay">
+
+                 <ul>
+                 {categories.map((cat, index) => (
+                     <li key={index}>{cat.name}</li>
+                 ))}
+             </ul>
+             <button className="close-overlay" onClick={toggleSidebar}>
+                        Close
+                    </button>
+             </div>
+            )}
+
+            
 
             <div className="wallet-info">
                 <span>Wallet Address for <b>{category.name} Category:</b></span>
@@ -62,8 +88,7 @@ const CategoryDetails = ({ categories }) => {
 
         <i className="fas fa-users info-card-icon"></i>
         <span>Total <b>{category.name}</b> Tokens:</span>
-        <h4>650,000,000
-        </h4>
+        <h4>650,000,000</h4>
         </div>
     </div>
     <div className="info-card">
