@@ -35,7 +35,7 @@ const CategoryDetails = ({ categories }) => {
             setUnlockTime(calculateRemainingTime());
         }, 1000); // Update every second
 
-        return () => clearInterval(interval); // Cleanup on unmount
+        return () => clearInterval(interval);
     }, []);
 
     if (!category) {
@@ -62,7 +62,8 @@ const CategoryDetails = ({ categories }) => {
 
         <i className="fas fa-users info-card-icon"></i>
         <span>Total <b>{category.name}</b> Tokens:</span>
-        <h4>650,000,000</h4>
+        <h4>650,000,000
+        </h4>
         </div>
     </div>
     <div className="info-card">

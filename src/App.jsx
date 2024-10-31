@@ -10,8 +10,8 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const App = () => {
   const categories = [
-    { name: 'Team', walletAddress: '0x0618EC2A09E651B1e9B92B351B74b9Dd16d90705' },
-    { name: 'Advisors', walletAddress: '0x4695093aC41EBdad58d69EF003E311962580E48F' },
+    { name: 'Team', walletAddress: '0x0618EC2A09E651B1e9B92B351B74b9Dd16d90705' , totalTokens: '650,000,000' },
+    { name: 'Advisors', walletAddress: '0x4695093aC41EBdad58d69EF003E311962580E48F' , totalTokens: '550,000,000' },
     { name: 'Partners', walletAddress: '0x2BA2F19F0951246f3c5dF4bEa4aF7EE9Af20F618' },
     { name: 'Private Sale', walletAddress: '0x44a575a6444eCe02f791732699D82d71537669A3' },
     { name: 'Seed Sale', walletAddress: '0x89c21335204eA061e1479067056E846fCC8CDb1F' },
